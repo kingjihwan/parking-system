@@ -1,0 +1,40 @@
+# Unity generated/cache folders (regenerated automatically on open)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]serSettings/
+[Mm]emoryCaptures/
+
+# Visual Studio / Rider / VS Code cache
+.vs/
+.vsconfig
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Unity crash logs
+sysinfo.txt
+*.stackdump
+
+# Unused legacy car models from the original project template (254MB, superseded by
+# Assets/Resources/Cars/rc_car_colored.glb — nothing in the code references these anymore)
+Assets/StreamingAssets/
