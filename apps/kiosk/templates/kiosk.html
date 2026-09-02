@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>충전 요청 정보 입력</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="kiosk">
+    <h1>전기차 충전 요청</h1>
+    
+    <form id="vehicle-form" class="card">
+      <label>
+        주차 구역 번호
+        <select name="parking_spot" required>
+          <option value="" disabled selected>구역을 선택해 주세요</option>
+          
+          <optgroup label="A구역">
+            <option value="A-1">A-1</option>
+            <option value="A-2">A-2</option>
+            <option value="A-3">A-3</option>
+            <option value="A-4">A-4</option>
+            <option value="A-5">A-5</option>
+            <option value="A-6">A-6</option>
+          </optgroup>
+
+          <optgroup label="B구역">
+            <option value="B-1">B-1</option>
+            <option value="B-2">B-2</option>
+            <option value="B-3">B-3</option>
+            <option value="B-4">B-4</option>
+            <option value="B-5">B-5</option>
+            <option value="B-6">B-6</option>
+          </optgroup>
+
+          <optgroup label="C구역">
+            <option value="C-1">C-1</option>
+            <option value="C-2">C-2</option>
+            <option value="C-3">C-3</option>
+            <option value="C-4">C-4</option>
+            <option value="C-5">C-5</option>
+            <option value="C-6">C-6</option>
+          </optgroup>
+        </select>
+      </label>
+
+      <label>
+        차량 번호판
+        <input type="text" name="license_plate" placeholder="예: 12가 3456" required autocomplete="off">
+      </label>
+
+      <label>
+        차종
+        <select name="vehicle_model">
+          <option value="" disabled selected>차종 선택</option>
+          
+          <optgroup label="현대 (Hyundai)">
+            <option value="아이오닉 5">아이오닉 5</option>
+            <option value="아이오닉 6">아이오닉 6</option>
+            <option value="코나 일렉트릭">코나 일렉트릭</option>
+            <option value="캐스퍼 일렉트릭">캐스퍼 일렉트릭</option>
+            <option value="포터2 일렉트릭">포터2 일렉트릭</option>
+          </optgroup>
+
+          <optgroup label="기아 (Kia)">
+            <option value="EV3">EV3</option>
+            <option value="EV6">EV6</option>
+            <option value="EV9">EV9</option>
+            <option value="니로 EV">니로 EV</option>
+            <option value="레이 EV">레이 EV</option>
+            <option value="봉고3 EV">봉고3 EV</option>
+          </optgroup>
+
+          <optgroup label="제네시스 (Genesis)">
+            <option value="GV60">GV60</option>
+            <option value="GV70 전동화모델">GV70 전동화모델</option>
+            <option value="G80 전동화모델">G80 전동화모델</option>
+          </optgroup>
+
+          <optgroup label="테슬라 (Tesla)">
+            <option value="모델 3">모델 3</option>
+            <option value="모델 Y">모델 Y</option>
+            <option value="모델 S">모델 S</option>
+            <option value="모델 X">모델 X</option>
+          </optgroup>
+
+          <optgroup label="기타 수입차">
+            <option value="BMW i4/i5/iX">BMW i시리즈</option>
+            <option value="벤츠 EQ 시리즈">벤츠 EQ 시리즈</option>
+            <option value="아우디 e-tron">아우디 e-tron</option>
+            <option value="폴스타 2">폴스타 2</option>
+          </optgroup>
+
+          <optgroup label="기타">
+            <option value="기타/목록에 없음">기타 (목록에 없음)</option>
+          </optgroup>
+        </select>
+      </label>
+
+      <label>
+        배터리 잔량
+        <div class="slider-row">
+          <input type="range" name="battery_level" min="0" max="100" value="50" id="battery-slider">
+          <output id="battery-output" for="battery-slider">50%</output>
+        </div>
+      </label>
+
+      <label>
+        예상 출차 시간
+        <input type="time" name="expected_departure_time" required>
+      </label>
+
+      <button type="submit" class="submit-btn">충전 신청하기</button>
+      <p id="form-error" class="error" hidden></p>
+    </form>
+  </main>
+
+  <div id="confirm-overlay" class="overlay" hidden>
+    <div class="overlay-card">
+      <h2>등록이 완료되었습니다</h2>
+      <p>잠시 후 초기 화면으로 돌아갑니다</p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='kiosk.js') }}"></script>
+</body>
+</html>

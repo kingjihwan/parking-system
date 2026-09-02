@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: #f8fafc; /* 아주 연한 회색 (밝은 배경) */
+  color: #0f172a; /* 진한 남색 (어두운 글씨) */
+  min-height: 100vh;
+}
+
+.kiosk {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #64748b; /* 기존보다 조금 더 진한 회색 */
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.card {
+  background: #ffffff; /* 카드 배경은 완전한 흰색 */
+  border-radius: 24px;
+  padding: 32px;
+  width: min(520px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* 그림자를 부드럽고 연하게 */
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 600; /* 밝은 배경에서는 라벨 글씨를 약간 두껍게 */
+}
+
+.optional {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: normal;
+}
+
+/* 콤보박스(select) 태그도 추가하여 디자인 통일 */
+input[type="text"],
+input[type="time"],
+select {
+  font-size: 1.3rem;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0; /* 연한 회색 테두리 */
+  background: #f8fafc; /* 입력창 배경은 살짝 회색 */
+  color: #0f172a;
+  appearance: none; /* 브라우저 기본 화살표 숨김 (깔끔하게) */
+}
+
+input[type="text"]:focus,
+input[type="time"]:focus,
+select:focus {
+  outline: none;
+  border-color: #38bdf8; /* 클릭 시 하늘색 테두리 */
+  background: #ffffff; /* 클릭 시 배경 하얗게 */
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+input[type="range"] {
+  flex: 1;
+  height: 40px;
+  accent-color: #38bdf8;
+}
+
+#battery-output {
+  min-width: 60px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.submit-btn {
+  margin-top: 8px;
+  padding: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 16px;
+  background: #38bdf8;
+  color: #ffffff; /* 버튼 글씨는 흰색으로 */
+  cursor: pointer;
+}
+
+.submit-btn:active {
+  background: #0ea5e9;
+}
+
+.error {
+  color: #ef4444; /* 조금 더 선명한 빨간색 */
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85); /* 완료 창 배경을 반투명 흰색으로 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 48px 64px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.overlay-card h2 {
+  font-size: 2rem;
+  margin: 0 0 12px;
+  color: #22c55e;
+}
+
+.status-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* 표 전체에 살짝 그림자 추가 */
+}
+
+th, td {
+  padding: 16px;
+  text-align: center; /* 가로 정렬: left에서 center로 변경 */
+  vertical-align: middle; /* 세로 정렬: 칸의 중앙에 딱 맞춤 */
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  color: #64748b;
+  font-weight: 600;
+  background: #f8fafc; /* 표 헤더 배경 살짝 회색 */
+}
+
+button.delete-btn {
+  background: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+button.delete-btn:hover {
+  background: #fef2f2; /* 마우스 올렸을 때 살짝 빨간 배경 */
+}

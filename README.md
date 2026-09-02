@@ -64,6 +64,16 @@ INA219 전력 측정 및 코일 위치 스캔
 │  │  └─ ina219_bluetooth_power_node/ina219_bluetooth_power_node.ino
 │  └─ parking_sensor/
 │     └─ six_bay_ultrasonic_detector/six_bay_ultrasonic_detector.ino
+├─ apps/
+│  ├─ unity-digital-twin/
+│  │  ├─ Assets/
+│  │  ├─ Packages/
+│  │  └─ ProjectSettings/
+│  └─ kiosk/
+│     ├─ app.py
+│     ├─ requirements.txt
+│     ├─ static/
+│     └─ templates/
 ├─ tools/
 │  └─ alignment/
 │     └─ coil_alignment_power_scan.py
@@ -98,6 +108,33 @@ INA219 전력 측정 및 코일 위치 스캔
 
 `archive/prototypes/`에는 최종 통합 전 단계에서 사용한 모터 스텝 계수, 리미트 스위치 적용 버전, Unity용 INA219 전송 형식 코드를 보존했습니다. 최종 동작 확인에는 위의 **최종·통합 코드**를 기준으로 사용합니다.
 
+## 애플리케이션
+
+### Unity 디지털 트윈
+
+[apps/unity-digital-twin](apps/unity-digital-twin/)에는 Unity 프로젝트 실행에 필요한 `Assets`, `Packages`, `ProjectSettings`가 함께 들어 있습니다.
+
+1. Unity Hub에서 **Add project from disk**를 선택합니다.
+2. 저장소 최상위 폴더가 아니라 `apps/unity-digital-twin` 폴더를 지정합니다.
+3. `Assets/Scenes/SampleScene.unity`를 엽니다.
+4. 각 시리얼 브리지의 COM 포트를 현재 PC 환경에 맞게 확인합니다.
+
+기존 Unity 파일과 `.meta` GUID를 그대로 보존했으므로 프로젝트 경로만 다시 지정하면 기존 씬과 리소스 연결이 유지됩니다.
+
+### 차량 정보 입력 키오스크
+
+[apps/kiosk](apps/kiosk/)에는 Flask·SQLite 기반 차량 정보 입력 화면과 차량 현황 화면이 들어 있습니다.
+
+```bash
+cd apps/kiosk
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+```
+
+실행 후 `http://localhost:5000`에서 차량을 등록하고, `http://localhost:5000/status`에서 등록 현황을 확인할 수 있습니다.
+
 ## 주요 통신 명령
 
 | 대상 | 명령 | 의미 |
@@ -121,15 +158,18 @@ Python 코디네이터가 일정 스텝 간격으로 모터를 이동시키고 �
 - 필요 패키지: `pyserial`, `matplotlib`
 - COM 포트와 스캔 범위는 프로그램 상단 설정값에서 실험 환경에 맞게 지정합니다.
 
-## 개발 브랜치 안내
+## 개발 이력 브랜치
 
-| 브랜치 | 내용 |
+현재 `main`에는 핵심 펌웨어, Unity 디지털 트윈, 키오스크, 분석 도구와 실험 결과를 한 구조로 통합했습니다. 아래 브랜치는 통합 이전의 개발 과정을 보존하기 위한 이력입니다.
+
+| 브랜치 | 통합된 위치 |
 |---|---|
-| [main](https://github.com/kingjihwan/parking-system/tree/main) | 외부 공개용 설명과 핵심 임베디드 코드 |
-| [Han_Unity](https://github.com/kingjihwan/parking-system/tree/Han_Unity) | Unity 디지털 트윈, 충전 스케줄러, 시리얼·Supabase 연동 |
-| [kiosk](https://github.com/kingjihwan/parking-system/tree/kiosk) | Flask 기반 차량 정보 입력 키오스크 |
-| [unity](https://github.com/kingjihwan/parking-system/tree/unity) | 초기 Unity 구현 |
-| [정밀정렬-초안](https://github.com/kingjihwan/parking-system/tree/%EC%A0%95%EB%B0%80%EC%A0%95%EB%A0%AC-%EC%B4%88%EC%95%88) | 정밀 정렬과 하드웨어 제어 실험 이력 |
+| [Han_Unity](https://github.com/kingjihwan/parking-system/tree/Han_Unity) | `apps/unity-digital-twin/` |
+| [kiosk](https://github.com/kingjihwan/parking-system/tree/kiosk) | `apps/kiosk/` |
+| [unity](https://github.com/kingjihwan/parking-system/tree/unity) | 이전 Unity 구현 |
+| [정밀정렬-초안](https://github.com/kingjihwan/parking-system/tree/%EC%A0%95%EB%B0%80%EC%A0%95%EB%A0%AC-%EC%B4%88%EC%95%88) | 정밀 정렬 및 하드웨어 실험 이력 |
+
+통합된 `main`에서 Unity와 키오스크가 정상 실행되는 것을 확인한 뒤, 불필요한 개발 브랜치는 태그로 보존하거나 삭제할 수 있습니다.
 
 ## 팀원 및 역할
 
