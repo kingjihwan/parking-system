@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>충전 신청 현황</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="status-page">
+    <h1>충전 신청 현황</h1>
+    <table id="vehicle-table">
+      <thead>
+        <tr>
+          <th>주차 구역</th>
+          <th>차량 번호</th>
+          <th>차종</th>
+          <th>배터리 잔량</th>
+          <th>예상 출차 시간</th>
+          <th>등록 시각</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script src="{{ url_for('static', filename='status.js') }}"></script>
+</body>
+</html>
